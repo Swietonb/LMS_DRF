@@ -17,8 +17,9 @@ class ReviewSerializer(serializers.ModelSerializer):
     )
 
     book = serializers.PrimaryKeyRelatedField(queryset=Book.objects.all())
+    user = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Review
-        fields = ['id', 'rating', 'content', 'book', 'created_at', 'updated_at']
-        read_only_fields = ['id', 'created_at', 'updated_at']
+        fields = ['id', 'rating', 'content', 'book', 'user', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'created_at', 'updated_at', 'user']

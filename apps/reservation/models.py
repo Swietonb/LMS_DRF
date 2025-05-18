@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from apps.books.models import Book
-
+from django.contrib.auth.models import User
 
 class Reservation(models.Model):
 
@@ -23,6 +23,7 @@ class Reservation(models.Model):
     return_time = models.DateTimeField()
 
     book: Book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reservations')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
